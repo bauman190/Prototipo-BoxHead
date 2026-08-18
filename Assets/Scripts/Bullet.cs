@@ -16,8 +16,13 @@ public class Bullet : MonoBehaviour
         Movement();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
+
     private void Movement()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 }

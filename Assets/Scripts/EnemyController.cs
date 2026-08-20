@@ -5,6 +5,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float speed = 0.1f;
     [SerializeField] private Transform target;
 
+    private WaveManager waveManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,8 +39,14 @@ public class EnemyController : MonoBehaviour
         this.target = target;
     }
 
+    public void SetWaveManager(WaveManager waveaManager)
+    { 
+        this.waveManager = waveaManager;
+    }
+
     void Die()
     {
+        waveManager.DecreaseEnemysInScreen();
         Destroy(gameObject);
     }
 

@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
 
     private BoxCollider spawnArea;
 
+    [SerializeField] private WaveManager waveManager;
+
     private void Awake()
     {
         spawnArea = GetComponent<BoxCollider>();
@@ -16,10 +18,10 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnLoop());
+        //StartCoroutine(SpawnLoop());
     }
 
-    private IEnumerator SpawnLoop()
+    /*private IEnumerator SpawnLoop()
     {
         while (true)
         {
@@ -28,9 +30,9 @@ public class Spawner : MonoBehaviour
 
             Spawn();
         }
-    }
+    }*/
 
-    private void Spawn()
+    public void Spawn()
     {
         Bounds bounds = spawnArea.bounds;
 
@@ -41,6 +43,7 @@ public class Spawner : MonoBehaviour
         if (enemySpawned.TryGetComponent<EnemyController>(out EnemyController enemy))
         {
             enemy.SetTarget(target);
+            enemy.SetWaveManager(waveManager);
         }
     }
 }
